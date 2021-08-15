@@ -1,0 +1,78 @@
+
+
+# Introduction {#intro}
+
+
+:::: {style="display: flex;"}
+
+::: {.col data-latex="{0.45\textwidth}" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%"}
+
+La abundancia o el número de individuos de una población es un parámetro clave para conocer el estado de la misma y poder realizar una correcta gestión (Krebs 2009). Sin embargo, estimar el número total de individuos que componenen una población, N, no es tarea sencilla. Para aproximarse a ese número se pueden diseñar muestreos que nos permitan obtener un índice de abundancia I, que puede definirse como “cantidades que reflejan variaciones temporales o espaciales del tamaño de las poblaciones sin conocer realmente su verdadero tamaño” (Tellería 2012). De forma general, se considera que
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.45\textwidth}" style="width:45%"}
+
+The abundance or the number of individuals in a population is a key parameter to know its status and to be able to carry out proper management (Krebs 2009). However, estimating the total number of individuals that make up a population, N, is not an easy task. To approach this number, samples can be designed that allow us to obtain an abundance index I, which can be defined as "quantities that reflect temporal or spatial variations in the size of the populations without really knowing their true size" (Tellería 2012). In general, it is considered that
+
+:::
+::::
+
+$$ I = p * N $$
+
+
+:::: {style="display: flex;"}
+
+::: {.col data-latex="{0.45\textwidth}" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%"}
+
+donde N es el número total de individuos de una población, I el índice de abundancia (un conteo de individuos que hayamos obtenido durante el muestreo, por ejemplo) y p sería la detectabilidad o capturabilidad, la eficacia que tenemos para detectar individuos durante los muestreos. Si logramos mantener constante esa p, el índice puede ser útil para realizar comparaciones de abundancia en el espacio-tiempo. Sin embargo, muchas veces la detectabilidad está condicionada por covariables que impiden mantenerla constante (muestreos realizados en diferentes épocas del año, lugares con más o menos visibilidad, etc.). Conocer esta p y sus variaciones nos permitiría estimar el número absoluto de individuos N, lo cual puede ser esencial en especies en críticamente amenazadas. Algunas aproximaciones como la captura-marcaje-recaptura se basan en la identificación individual de los individuos para estimar esta detectabilidad p y poder así obtener abundancias absolutas (Efford 2004), pero esta metodología suele ser costosa de implementar, ya que requiere una caprura y un manejo de los individuos de estudio que no es siempre posible.
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.45\textwidth}" style="width:45%"}
+
+where N is the total number of individuals in a population, I the abundance index (a count of individuals that we have obtained during the sampling, for example) and p would be the detectability or catchability, the efficiency we have in detecting individuals during the samplings. If we can keep that p constant, the index can be useful for making comparisons of abundance in space-time. However, detectability is often conditioned by covariates that prevent it from being constant (samplings carried out at different times of the year, places with more or less visibility, etc.). Knowing this p and its variations would allow us to estimate the absolute number of individuals N, which may be essential in critically endangered species. Some approaches such as capture-mark-recapture are based on the individual identification of individuals to estimate this detectability and thus be able to obtain absolute abundances (Efford 2004), but this methodology is usually expensive to implement, since it requires capriation and management. of study individuals that is not always possible.
+
+:::
+::::
+
+<br />
+
+
+:::: {style="display: flex;"}
+
+::: {.col data-latex="{0.45\textwidth}" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%"}
+
+Los N-mixture models, modelos de mezclas o modelo de conteos (Royle 2004) nos permiten estimar la abundancia de una especie a partir de muestreos repetidos. Estos modelos tienen una estructura jerárquica (Kéry and Royle 2016) y estiman a la vez la abundancia y la detectabilidad/capturabilidad de la especie de estudio a partir de conteos repetidos t ocasiones en n sitios diferentes.
+
+En el siguiente tutorial se pretende comprender las generalidades de los N-mixture models a partir de la simulación de dos sencillos escenarios utilizando el lenguaje R y el paquete unmarked (Fiske and Chandler 2011).
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.45\textwidth}" style="width:45%"}
+
+The N-mixture models, mixture models or counting models (Royle 2004) allow us to estimate the abundance of a species from repeated samplings. These models have a hierarchical structure (Kéry and Royle 2016) and estimate both the abundance and the detectability / catchability of the study species from repeated counts t times at n different sites.
+
+The following tutorial aims to understand the generalities of the N-mixture models from the simulation of two simple scenarios using the R language and the unmarked package (Fiske and Chandler 2011).
+
+:::
+::::
+

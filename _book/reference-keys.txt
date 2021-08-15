@@ -1,0 +1,7 @@
+preface
+n-mixture-model-tutorial
+intro
+gen
+simWithout
+ref
+httpsstackoverflow.comquestions51424537whats-the-difference-between-bookdown-yml-output-yml-and-yaml-header-of

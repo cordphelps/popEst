@@ -1,0 +1,128 @@
+--- 
+title: "A Minimal Book Example"
+author: "Yihui Xie"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  html_document: 
+    css: "columns.css"
+#
+# To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.name/tinytex/>.
+# YAML accepts comments (and YAML may be added below)
+#   pdf_document: 
+#     keep_tex: true
+#     includes:
+#       in_header: "columns.tex"
+#  beamer_presentation: 
+#     keep_tex: true
+#     includes:
+#       in_header: columns.tex
+#
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+---
+
+# N-mixture models: Generalidades (Generalities)
+
+
+---
+
+:::: {style="display: flex;"}
+
+::: {.source-col data-latex="{0.45\textwidth}" style="font-style: italic;"}
+
+Pongamos que salimos al campo a buscar ciervos *(Cervus elaphus)*.
+
+De forma general, se podría afirmar que si detectamos un individuo de ciervo durante el muestreo, la especie está presente en ese lugar y en ese momento (asumimos que conocemos bien la especie y que no hay posibilidad de obtener falsos positivos, esto es, confundir otras especies con individuos de ciervo, por ejemplo). Sin embargo, el hecho de no detectarla puede estar indicándonos dos cosas:
+
+1. Que la especie **no esté presente** en ese lugar porque el hábitat no es el adecuado, o la especie se haya extinguido, etc. Esto sería un verdadero negativo.
+
+2. Que la especie **si esté presente pero no hayamos sido capaces de detectarla** (hemos ido a muestrear al medio día y solo tiene actividad crepuscular, por ejemplo). Esto sería un falso negativo.
+
+Los N-mixture models son capaces de tener en cuenta la posibilidad de cometer falsos negativos cuando muestreamos varias ocasiones los mismos sitios. Tienen en cuenta dos procesos:
+
+- Un proceso (o submodelo) que determina la abundancia de la especie. En inglés suele denominarse state process.
+- Un proceso (o submodelo) que determina la probabilidad de detección/observación de la especie. En inglés observational process.
+
+Estos modelos suelen denominarse modelos jerárquicos ya que el proceso de detección depende en parte del proceso de abundancia. A continuación simularemos una serie de escenarios a modo de ejemplo para entender un poco mejor los N-mixture models.
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.45\textwidth}"}
+
+Let's say we go out into the field to look for deer *(Cervus elaphus)*.
+
+In general, it could be stated that if we detect an individual deer during the sampling, the species is present in that place and at that time (we assume that we know the species well and that there is no possibility of obtaining false positives, that is, confusing other species with deer individuals, for example). However, the fact of not detecting it may be indicating two things:
+
+1. That the species **is not present** in that place because the habitat is not adequate, or the species has become extinct, etc. This would be a real negative.
+
+2. That the species **is present but we have not been able to detect it** (we have gone to sample at noon and it only has twilight activity, for example). This would be a false negative.
+
+The N-mixture models are able to take into account the possibility of committing false negatives when we repeatedly sample the same sites. They take into account two processes:
+
+- A process (or sub-model) that determines the abundance of the species. In English it is usually called the state process.
+- A process (or sub-model) that determines the probability of detection / observation of the species. In English observational process.
+
+These models are often called hierarchical models since the detection process depends in part on the abundance process. Below we will simulate a series of example scenarios to understand the N-mixture models a little better.
+
+:::
+::::
+
+---
+# random YAML comment
+---
+
+
+Below is a Div containing three child Divs side by side. The Div
+in the middle is empty, just to add more space between the left
+and right Divs.
+
+:::: {style="display: flex;"}
+
+::: {.col data-latex="{0.45\textwidth}"}
+
+```{r, c1, echo=FALSE, out.width="100%"}
+par(mar = c(4, 4, .2, .1))
+plot(cars, pch = 19)
+```
+
+Yet she does have a kind of respect for the creatures. “Their behavior clearly works; there are a lot of harvester ant colonies out there, more every year,” she observes. “I deeply admire their harvester-ant-ness, the richness of their responses to a world so alien to me.”
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.45\textwidth}"}
+
+
+Yet she does have a kind of respect for the creatures. “Their behavior clearly works; there are a lot of harvester ant colonies out there, more every year,” she observes. “I deeply admire their harvester-ant-ness, the richness of their responses to a world so alien to me.”
+
+
+```{r, c3, echo=FALSE, out.width="100%"}
+par(mar = c(4, 4, .2, .1))
+plot(cars, pch = 19)
+```
+
+:::
+::::
+
+
+```{r bibDatabase, include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

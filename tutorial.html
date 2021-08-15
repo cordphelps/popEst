@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>N-mixture models</title>
+  <meta name="description" content="derived from the bookdown minimal example. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.22.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="N-mixture models" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="derived from the bookdown minimal example. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="N-mixture models" />
+  
+  <meta name="twitter:description" content="derived from the bookdown minimal example. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Javier Fernández-López" />
+<meta name="author" content="google translate" />
+
+
+<meta name="date" content="2021-08-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="introducción.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">a label in _output.yml</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="tutorial.html"><a href="tutorial.html"><i class="fa fa-check"></i><b>1</b> Tutorial</a></li>
+<li class="chapter" data-level="2" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i><b>2</b> Introducción</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">N-mixture models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">N-mixture models</h1>
+<p class="author"><em>Javier Fernández-López</em></p>
+<p class="author"><em>google translate</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-08-14</em></p>
+</div>
+<div id="tutorial" class="section level1" number="1">
+<h1><span class="header-section-number"> 1</span> Tutorial</h1>
+<div style="display: flex;">
+<div class="col">
+<p>Javier’s original content ()</p>
+</div>
+<p>::: {.col data-latex=“{0.05}” style=“font-style: italic;” width=“50%” background-color: #fff}
+ 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col">
+<p>google translate hack</p>
+</div>
+<p>::::</p>
+<div style="display: flex;">
+<div class="col">
+<p>Este tutorial está basado principalmente en el capítulo 6 del libro Applied Hierarchical Modeling in Ecology Analysis of distribution, abundance and species richness in R and BUGS de Marc Kéry y J. Andrew Royle (Kéry and Royle 2016). Existen otros buenos tutoriales como este de M.E. Colvin o estos del Cornell Lab of Ornitology que también han sido consultados.</p>
+</div>
+<div class="col">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col">
+<p>This tutorial is primarily based on Chapter 6 of the book Applied Hierarchical Modeling in Ecology Analysis of distribution, abundance and species richness in R and BUGS by Marc Kéry and J. Andrew Royle (Kéry and Royle 2016). There are other good tutorials like this one from M.E. Colvin or these from the Cornell Lab of Ornitology that have also been consulted.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="introducción.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/%s",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

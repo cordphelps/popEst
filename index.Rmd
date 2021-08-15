@@ -1,0 +1,61 @@
+--- 
+title: "mashup: N-mixture models"
+author: 
+  - Cord Phelps
+date: "August 2021"
+site: bookdown::bookdown_site  # apparently mandatory per
+# https://stackoverflow.com/questions/51424537/whats-the-difference-between-bookdown-yml-output-yml-and-yaml-header-of
+output: 
+  html_document: 
+    css: ./css/columns.css
+  pdf_document: 
+keep_tex: true
+includes:
+       in_header: ./tex/columns.tex
+documentclass: book #    chapters vs. sections: 'book' or 'article' per 
+# https://stackoverflow.com/questions/63530527/multipage-bookdown-into-article
+# bookdown::render_book("index.Rmd")
+# rmarkdown::render("index.Rmd") produces tutorial.html
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "derived from the bookdown minimal example. The output format for this example is bookdown::gitbook."
+---
+
+# preface
+
+Not finding literature on the estimation of spider populations in vineyard canopy, I fall back on available descriptions of non-invasive sampling strategy and analytical techniques for animal populations in general. Specifically, the journal article <i>Comparison of Two Sampling Methods to Estimate the Abundance of Lucanus cervus with Application of n-Mixture Models</i> [@f11101085] leads to a review and investigation of N-mixture models by Javier Fernández-López [@fernandez-lopez_n-mixture_2020]. 
+
+<br />
+
+This project is a mashup that follows Javier's work, first by translating his Spanish to English using google translate [@noauthor_google_nodate], and then by using his recommended techniques to apply n-mixture modelling to my vineyard spider data. 
+
+<br />
+
+# n-mixture model tutorial
+
+
+:::: {style="display: flex;"}
+
+::: {.col data-latex="{0.45\textwidth}" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%"}
+ 
+Este tutorial está basado principalmente en el capítulo 6 del libro Applied Hierarchical Modeling in Ecology Analysis of distribution, abundance and species richness in R and BUGS de Marc Kéry y J. Andrew Royle (Kéry and Royle 2016). Existen otros buenos tutoriales como este de M.E. Colvin o estos del Cornell Lab of Ornitology que también han sido consultados.
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.45\textwidth}" style="width:45%"}
+
+
+This tutorial is primarily based on Chapter 6 of the book Applied Hierarchical Modeling in Ecology Analysis of distribution, abundance and species richness in R and BUGS by Marc Kéry and J. Andrew Royle (Kéry and Royle 2016). There are other good tutorials like this one from M.E. Colvin or these from the Cornell Lab of Ornitology that have also been consulted.
+
+
+:::
+::::
+

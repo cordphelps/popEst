@@ -1,0 +1,56 @@
+
+
+# references {#ref}
+
+
+
+Below is a Div containing three child Divs side by side. The Div
+in the middle is empty, just to add more space between the left
+and right Divs.
+
+:::: {style="display: flex;"}
+
+::: {.col data-latex="{0.45\textwidth}"}
+
+```{r, c1, echo=FALSE, out.width="100%"}
+par(mar = c(4, 4, .2, .1))
+plot(cars, pch = 19)
+```
+
+Yet she does have a kind of respect for the creatures. “Their behavior clearly works; there are a lot of harvester ant colonies out there, more every year,” she observes. “I deeply admire their harvester-ant-ness, the richness of their responses to a world so alien to me.”
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.45\textwidth}"}
+
+
+Yet she does have a kind of respect for the creatures. “Their behavior clearly works; there are a lot of harvester ant colonies out there, more every year,” she observes. “I deeply admire their harvester-ant-ness, the richness of their responses to a world so alien to me.”
+
+
+```{r, c3, echo=FALSE, out.width="100%"}
+par(mar = c(4, 4, .2, .1))
+plot(cars, pch = 19)
+```
+
+:::
+::::
+
+
+---
+# random YAML comment
+---
+
+
+```{r bibDatabase, include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
