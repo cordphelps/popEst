@@ -213,7 +213,7 @@ lambda <- 4
 # de Poisson con una lambda = 4
 sarea[] <- rpois(100, lambda)  
 
-# plot(sarea)
+# plot(sarea)   <-- Javier does this
 ```
 
   
@@ -233,6 +233,7 @@ rownames(area.matrix) <- c(1,2,3,4,5,6,7,8,9,10)
 longData<-melt(area.matrix)
 longData<-longData[longData$value!=0,]
 
+# not here; side-by-side plots (below)
 noPlot <- ggplot(longData, aes(x = Var2, y = Var1)) + 
   geom_raster(aes(fill=value)) + 
   scale_fill_gradientn(colors=rev(terrain.colors(12))) +
@@ -280,6 +281,221 @@ ggplot(longData, aes(x = Var2, y = Var1)) +
 
 <br />
 
+(I'm saying that is close enough on the color match....)
+
+<br />
+
+
+:::: {style="display: flex;"}
+
+::: {.col data-latex="{0.45\textwidth}" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%"}
+
+Si hacemos la suma de todas las celdas de nuestro área de estudio, podremos saber el número total de individuos que hemos simulado (N): 
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.45\textwidth}" style="width:45%"}
+
+If we do the sum of all the cells in our study area, we will be able to know the total number of individuals that we have simulated (N): 
+
+:::
+::::
+
+<br />
+
+
+```{r s1, warning=FALSE, echo=TRUE, include=TRUE}
+
+# Calculamos el número total de ciervos virtuales creados (N)
+sum(sarea[])
+   
+
+```
+ 
+<br />
+
+:::: {style="display: flex;"}
+
+::: {.col data-latex="{0.45\textwidth}" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%"}
+
+Podemos también hacer la media de individuos en cada celda, que debería aproximarse a λ=4: 
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.45\textwidth}" style="width:45%"}
+
+We can also take the average of individuals in each cell, which should approximate λ = 4: 
+
+:::
+::::
+
+<br />
+
+
+
+```{r s2, warning=FALSE, echo=TRUE, include=TRUE}
+
+mean(sarea[])
+   
+
+```
+ 
+
+<br />
+
+
+:::: {style="display: flex;"}
+
+::: {.col data-latex="{0.45\textwidth}" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%"}
+
+A continuación tenemos que simular nuestro muestreo (proceso de detectabilidad o observational process). Éste consistirá en 15 cuadrículas aleatorias de nuestro área de estudio a las cuales realizaremos 4 visitas (ocasiones). Durante los muestreos intentaremos detectar el máximo número posible de ciervos, pero desgraciadamente sabemos que tenemos una eficacia o probabilidad de detección del 40% para todo nuestro área de estudio. Esto significa que, en general, seremos capaces de detectar menos de la mitad de ciervos en cada muestreo. Para simular esta detectabilidad podemos utilizar una distribución binomial. La distribución binomial maneja la probabilidad de éxito para un número de sucesos con dos resultados posibles: éxito o fracaso (cara o cruz, par o impar, etc.). Pongamos que una celda tiene 10 ciervos. La detección de cada uno de esos 10 ciervos puede verse como 10 sucesos en los que puedo tener éxito (detecto al ciervo) o fracasar (el ciervo está, pero no lo detecto). De esta forma, tendríamos que 
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.45\textwidth}" style="width:45%"}
+
+Next we have to simulate our sampling (detectability process or observational process). This will consist of 15 random grids from our study area to which we will make 4 visits (occasions). During the samplings we will try to detect the maximum possible number of deer, but unfortunately we know that we have an efficiency or probability of detection of 40% for our entire study area. This means that, in general, we will be able to detect less than half the deer in each sample. To simulate this detectability we can use a binomial distribution. The binomial distribution handles the probability of success for a number of events with two possible outcomes: success or failure (heads or tails, even or odd, etc.). Let's say a cell has 10 deer. Detecting each of those 10 deer can be viewed as 10 events where I can either succeed (detect the deer) or fail (the deer is there, but I don't detect it). In this way, we would have to 
+
+:::
+::::
+
+<br />
+
+$$ y_{i,k} \sim binomial(N_{i},p) $$
+<br />
+
+:::: {style="display: flex;"}
+
+::: {.col data-latex="{0.45\textwidth}" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%"}
+
+dónde $y_{i,k}$ es el número de individuos detectados en la celda i en la visita/ocasión k, $N_{i}$i es el número de individuos en la celda i y p es la probabilidad de detectar cada ciervo, siendo en nuestro caso p=0.4. Recapitulando, muestrearemos 15 cuadrículas aleatorias durante 4 visitas diferentes. En cada visita tendremos una probabilidad del 40% de ver cada uno de los ciervos que se encuentren en la cuadrícula. El siguiente código simula este proceso: 
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.45\textwidth}" style="width:45%"}
+
+where $y_{i,k}$ is the number of individuals detected in cell i on visit / occasion k, $N_{i}$ is the number of individuals in cell i and p is the probability of detecting each deer, in our case being p = 0.4. Recapping, we will sample 15 random grids during 4 different visits. In each visit we will have a 40% probability of seeing each of the deer that are in the grid. The following code simulates this process: 
+
+:::
+::::
+
+<br />
+
+
+```{r s3, warning=FALSE, echo=TRUE, include=TRUE}
+
+# Seleccionamos 15 celdas aleatorias de nuestro area de estudio
+# (We selected 15 random cells from our study area)
+site_ID <- sample(1:100, 15)
+dataset <- data.frame(site_ID)
+
+# Vamos a almacenar en número real de individuos de cada celda para poder hacer 
+# comparaciones posteriormente
+# (We are going to store the real number of individuals in each cell to be able 
+#  to make comparisons later)
+dataset$trueN <- extract(sarea,site_ID)
+
+# Iniciamos nuestras 4 visitas
+dataset$O1 <- NA
+dataset$O2 <- NA
+dataset$O3 <- NA
+dataset$O4 <- NA
+
+# Con un doble bucle, visitarremos 4 veces cada uno de nuestras 15 cuadrículas
+# (With a double loop, we will visit each of our 15 grids 4 times)
+for (j in 1:4){
+  for (i in 1:length(site_ID)){
+    # Nótese que los individuos detectados vienen determinados por una 
+    # binomial con probabilidad 0.4, véase help(rbinom)
+    # (Note that the detected individuals are determined by a binomial 
+    #  with probability 0.4, see help (rbinom))
+    dataset[i,j+2] <- rbinom(1, extract(sarea,site_ID[i]), 0.4)
+  }
+}
+   
+
+```
+ 
+
+<br />
+
+:::: {style="display: flex;"}
+
+::: {.col data-latex="{0.45\textwidth}" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%"}
+
+Una vez realizado el muestreo, veamos el resultado del mismo. Primero graficamos nuestro área de estudio con las celdas muestreadas: 
+
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.45\textwidth}" style="width:45%"}
+
+Once the sampling is done, let's see the result of it. First we graph our study area with the sampled cells: 
+
+:::
+::::
+
+<br />
+
+```{r s5, warning=FALSE, echo=TRUE, include=TRUE}
+
+plot(sarea)
+points(xyFromCell(sarea,site_ID), pch = 4, cex = 1.5)
+   
+
+```
+
+
+```{r s6, warning=FALSE, echo=TRUE, include=TRUE}
+
+df <- as.data.frame(xyFromCell(sarea,site_ID))
+
+# fine tuning the cell colors.....
+v <- rev(terrain.colors(12))
+v <- v[2:length(v)]
+  
+ggplot(longData, aes(x = Var2, y = Var1)) + 
+  geom_raster(aes(fill=value)) + 
+  geom_point(data=df, aes(x,y), position=position_nudge(x = 0.5, y = 0.5), 
+             shape = 4, colour = "black", size = 5, stroke = 2) +
+  theme_bw()  +
+  #scale_fill_gradientn(colors=rev(terrain.colors(12))) 
+  scale_fill_gradientn(colors=v)
+   
+
+```
+ 
+<br />
+
 
 :::: {style="display: flex;"}
 
@@ -303,3 +519,4 @@ where
 ::::
 
 <br />
+

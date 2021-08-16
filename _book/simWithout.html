@@ -261,7 +261,7 @@ a column separator --></p>
 <span id="cb3-5"><a href="simWithout.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># de Poisson con una lambda = 4</span></span>
 <span id="cb3-6"><a href="simWithout.html#cb3-6" aria-hidden="true" tabindex="-1"></a>sarea[] <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">100</span>, lambda)  </span>
 <span id="cb3-7"><a href="simWithout.html#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="simWithout.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(sarea)</span></span></code></pre></div>
+<span id="cb3-8"><a href="simWithout.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(sarea)   &lt;-- Javier does this</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="simWithout.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract S4 data and build vector</span></span>
 <span id="cb4-2"><a href="simWithout.html#cb4-2" aria-hidden="true" tabindex="-1"></a>area.vector <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(sarea)</span>
 <span id="cb4-3"><a href="simWithout.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to matrix</span></span>
@@ -274,10 +274,11 @@ a column separator --></p>
 <span id="cb4-10"><a href="simWithout.html#cb4-10" aria-hidden="true" tabindex="-1"></a>longData<span class="ot">&lt;-</span><span class="fu">melt</span>(area.matrix)</span>
 <span id="cb4-11"><a href="simWithout.html#cb4-11" aria-hidden="true" tabindex="-1"></a>longData<span class="ot">&lt;-</span>longData[longData<span class="sc">$</span>value<span class="sc">!=</span><span class="dv">0</span>,]</span>
 <span id="cb4-12"><a href="simWithout.html#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="simWithout.html#cb4-13" aria-hidden="true" tabindex="-1"></a>noPlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(longData, <span class="fu">aes</span>(<span class="at">x =</span> Var2, <span class="at">y =</span> Var1)) <span class="sc">+</span> </span>
-<span id="cb4-14"><a href="simWithout.html#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">fill=</span>value)) <span class="sc">+</span> </span>
-<span id="cb4-15"><a href="simWithout.html#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors=</span><span class="fu">rev</span>(<span class="fu">terrain.colors</span>(<span class="dv">12</span>))) <span class="sc">+</span></span>
-<span id="cb4-16"><a href="simWithout.html#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code></pre></div>
+<span id="cb4-13"><a href="simWithout.html#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># not here; side-by-side plots (below)</span></span>
+<span id="cb4-14"><a href="simWithout.html#cb4-14" aria-hidden="true" tabindex="-1"></a>noPlot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(longData, <span class="fu">aes</span>(<span class="at">x =</span> Var2, <span class="at">y =</span> Var1)) <span class="sc">+</span> </span>
+<span id="cb4-15"><a href="simWithout.html#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">fill=</span>value)) <span class="sc">+</span> </span>
+<span id="cb4-16"><a href="simWithout.html#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors=</span><span class="fu">rev</span>(<span class="fu">terrain.colors</span>(<span class="dv">12</span>))) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="simWithout.html#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code></pre></div>
 <div style="display: flex;">
 <div class="col" style="border-style:solid; width:45%">
 <p><img src="bookdown-demo_files/figure-html/area1-1.png" width="672" /></p>
@@ -291,6 +292,134 @@ a column separator --></p>
 <p><img src="bookdown-demo_files/figure-html/area2-1.png" width="672" /></p>
 </div>
 </div>
+<p><br /></p>
+<p>(I’m saying that is close enough on the color match….)</p>
+<p><br /></p>
+<div style="display: flex;">
+<div class="col" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%">
+<p>Si hacemos la suma de todas las celdas de nuestro área de estudio, podremos saber el número total de individuos que hemos simulado (N):</p>
+</div>
+<div class="col">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col" style="width:45%">
+<p>If we do the sum of all the cells in our study area, we will be able to know the total number of individuals that we have simulated (N):</p>
+</div>
+</div>
+<p><br /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="simWithout.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculamos el número total de ciervos virtuales creados (N)</span></span>
+<span id="cb5-2"><a href="simWithout.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sarea[])</span></code></pre></div>
+<pre><code>## [1] 389</code></pre>
+<p><br /></p>
+<div style="display: flex;">
+<div class="col" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%">
+<p>Podemos también hacer la media de individuos en cada celda, que debería aproximarse a λ=4:</p>
+</div>
+<div class="col">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col" style="width:45%">
+<p>We can also take the average of individuals in each cell, which should approximate λ = 4:</p>
+</div>
+</div>
+<p><br /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="simWithout.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sarea[])</span></code></pre></div>
+<pre><code>## [1] 3.89</code></pre>
+<p><br /></p>
+<div style="display: flex;">
+<div class="col" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%">
+<p>A continuación tenemos que simular nuestro muestreo (proceso de detectabilidad o observational process). Éste consistirá en 15 cuadrículas aleatorias de nuestro área de estudio a las cuales realizaremos 4 visitas (ocasiones). Durante los muestreos intentaremos detectar el máximo número posible de ciervos, pero desgraciadamente sabemos que tenemos una eficacia o probabilidad de detección del 40% para todo nuestro área de estudio. Esto significa que, en general, seremos capaces de detectar menos de la mitad de ciervos en cada muestreo. Para simular esta detectabilidad podemos utilizar una distribución binomial. La distribución binomial maneja la probabilidad de éxito para un número de sucesos con dos resultados posibles: éxito o fracaso (cara o cruz, par o impar, etc.). Pongamos que una celda tiene 10 ciervos. La detección de cada uno de esos 10 ciervos puede verse como 10 sucesos en los que puedo tener éxito (detecto al ciervo) o fracasar (el ciervo está, pero no lo detecto). De esta forma, tendríamos que</p>
+</div>
+<div class="col">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col" style="width:45%">
+<p>Next we have to simulate our sampling (detectability process or observational process). This will consist of 15 random grids from our study area to which we will make 4 visits (occasions). During the samplings we will try to detect the maximum possible number of deer, but unfortunately we know that we have an efficiency or probability of detection of 40% for our entire study area. This means that, in general, we will be able to detect less than half the deer in each sample. To simulate this detectability we can use a binomial distribution. The binomial distribution handles the probability of success for a number of events with two possible outcomes: success or failure (heads or tails, even or odd, etc.). Let’s say a cell has 10 deer. Detecting each of those 10 deer can be viewed as 10 events where I can either succeed (detect the deer) or fail (the deer is there, but I don’t detect it). In this way, we would have to</p>
+</div>
+</div>
+<p><br /></p>
+<p><span class="math display">\[ y_{i,k} \sim binomial(N_{i},p) \]</span>
+<br /></p>
+<div style="display: flex;">
+<div class="col" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%">
+<p>dónde <span class="math inline">\(y_{i,k}\)</span> es el número de individuos detectados en la celda i en la visita/ocasión k, <span class="math inline">\(N_{i}\)</span>i es el número de individuos en la celda i y p es la probabilidad de detectar cada ciervo, siendo en nuestro caso p=0.4. Recapitulando, muestrearemos 15 cuadrículas aleatorias durante 4 visitas diferentes. En cada visita tendremos una probabilidad del 40% de ver cada uno de los ciervos que se encuentren en la cuadrícula. El siguiente código simula este proceso:</p>
+</div>
+<div class="col">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col" style="width:45%">
+<p>where <span class="math inline">\(y_{i,k}\)</span> is the number of individuals detected in cell i on visit / occasion k, <span class="math inline">\(N_{i}\)</span> is the number of individuals in cell i and p is the probability of detecting each deer, in our case being p = 0.4. Recapping, we will sample 15 random grids during 4 different visits. In each visit we will have a 40% probability of seeing each of the deer that are in the grid. The following code simulates this process:</p>
+</div>
+</div>
+<p><br /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="simWithout.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seleccionamos 15 celdas aleatorias de nuestro area de estudio</span></span>
+<span id="cb9-2"><a href="simWithout.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (We selected 15 random cells from our study area)</span></span>
+<span id="cb9-3"><a href="simWithout.html#cb9-3" aria-hidden="true" tabindex="-1"></a>site_ID <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="dv">15</span>)</span>
+<span id="cb9-4"><a href="simWithout.html#cb9-4" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(site_ID)</span>
+<span id="cb9-5"><a href="simWithout.html#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="simWithout.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos a almacenar en número real de individuos de cada celda para poder hacer </span></span>
+<span id="cb9-7"><a href="simWithout.html#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># comparaciones posteriormente</span></span>
+<span id="cb9-8"><a href="simWithout.html#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># (We are going to store the real number of individuals in each cell to be able </span></span>
+<span id="cb9-9"><a href="simWithout.html#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  to make comparisons later)</span></span>
+<span id="cb9-10"><a href="simWithout.html#cb9-10" aria-hidden="true" tabindex="-1"></a>dataset<span class="sc">$</span>trueN <span class="ot">&lt;-</span> <span class="fu">extract</span>(sarea,site_ID)</span>
+<span id="cb9-11"><a href="simWithout.html#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="simWithout.html#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Iniciamos nuestras 4 visitas</span></span>
+<span id="cb9-13"><a href="simWithout.html#cb9-13" aria-hidden="true" tabindex="-1"></a>dataset<span class="sc">$</span>O1 <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb9-14"><a href="simWithout.html#cb9-14" aria-hidden="true" tabindex="-1"></a>dataset<span class="sc">$</span>O2 <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb9-15"><a href="simWithout.html#cb9-15" aria-hidden="true" tabindex="-1"></a>dataset<span class="sc">$</span>O3 <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb9-16"><a href="simWithout.html#cb9-16" aria-hidden="true" tabindex="-1"></a>dataset<span class="sc">$</span>O4 <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb9-17"><a href="simWithout.html#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="simWithout.html#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Con un doble bucle, visitarremos 4 veces cada uno de nuestras 15 cuadrículas</span></span>
+<span id="cb9-19"><a href="simWithout.html#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># (With a double loop, we will visit each of our 15 grids 4 times)</span></span>
+<span id="cb9-20"><a href="simWithout.html#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
+<span id="cb9-21"><a href="simWithout.html#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(site_ID)){</span>
+<span id="cb9-22"><a href="simWithout.html#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Nótese que los individuos detectados vienen determinados por una </span></span>
+<span id="cb9-23"><a href="simWithout.html#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># binomial con probabilidad 0.4, véase help(rbinom)</span></span>
+<span id="cb9-24"><a href="simWithout.html#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (Note that the detected individuals are determined by a binomial </span></span>
+<span id="cb9-25"><a href="simWithout.html#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">#  with probability 0.4, see help (rbinom))</span></span>
+<span id="cb9-26"><a href="simWithout.html#cb9-26" aria-hidden="true" tabindex="-1"></a>    dataset[i,j<span class="sc">+</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="fu">extract</span>(sarea,site_ID[i]), <span class="fl">0.4</span>)</span>
+<span id="cb9-27"><a href="simWithout.html#cb9-27" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-28"><a href="simWithout.html#cb9-28" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><br /></p>
+<div style="display: flex;">
+<div class="col" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%">
+<p>Una vez realizado el muestreo, veamos el resultado del mismo. Primero graficamos nuestro área de estudio con las celdas muestreadas:</p>
+</div>
+<div class="col">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col" style="width:45%">
+<p>Once the sampling is done, let’s see the result of it. First we graph our study area with the sampled cells:</p>
+</div>
+</div>
+<p><br /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="simWithout.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sarea)</span>
+<span id="cb10-2"><a href="simWithout.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">xyFromCell</span>(sarea,site_ID), <span class="at">pch =</span> <span class="dv">4</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/s5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="simWithout.html#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">xyFromCell</span>(sarea,site_ID))</span>
+<span id="cb11-2"><a href="simWithout.html#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="simWithout.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fine tuning the cell colors.....</span></span>
+<span id="cb11-4"><a href="simWithout.html#cb11-4" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">rev</span>(<span class="fu">terrain.colors</span>(<span class="dv">12</span>))</span>
+<span id="cb11-5"><a href="simWithout.html#cb11-5" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> v[<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(v)]</span>
+<span id="cb11-6"><a href="simWithout.html#cb11-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-7"><a href="simWithout.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(longData, <span class="fu">aes</span>(<span class="at">x =</span> Var2, <span class="at">y =</span> Var1)) <span class="sc">+</span> </span>
+<span id="cb11-8"><a href="simWithout.html#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">fill=</span>value)) <span class="sc">+</span> </span>
+<span id="cb11-9"><a href="simWithout.html#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>df, <span class="fu">aes</span>(x,y), <span class="at">position=</span><span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">0.5</span>), </span>
+<span id="cb11-10"><a href="simWithout.html#cb11-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">stroke =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="simWithout.html#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()  <span class="sc">+</span></span>
+<span id="cb11-12"><a href="simWithout.html#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_fill_gradientn(colors=rev(terrain.colors(12))) </span></span>
+<span id="cb11-13"><a href="simWithout.html#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colors=</span>v)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/s6-1.png" width="672" /></p>
 <p><br /></p>
 <div style="display: flex;">
 <div class="col" style="font-style: italic; background-color: #ccccff; border-style:solid; width:45%">
