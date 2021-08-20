@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> 5 The simplest N-mixture model with unmarked | mashup: N-mixture models</title>
+  <meta name="description" content="derived from the bookdown minimal example. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.22.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content=" 5 The simplest N-mixture model with unmarked | mashup: N-mixture models" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="derived from the bookdown minimal example. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 5 The simplest N-mixture model with unmarked | mashup: N-mixture models" />
+  
+  <meta name="twitter:description" content="derived from the bookdown minimal example. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Cord Phelps" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="simWithout.html"/>
+<link rel="next" href="simulation-of-the-study-area-and-sampling-with-covariates.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">a label in _output.yml</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> <span>https://stackoverflow.com/questions/51424537/whats-the-difference-between-bookdown-yml-output-yml-and-yaml-header-of</span></a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="gen.html"><a href="gen.html"><i class="fa fa-check"></i><b>3</b> N mixture models: In General</a></li>
+<li class="chapter" data-level="4" data-path="simWithout.html"><a href="simWithout.html"><i class="fa fa-check"></i><b>4</b> Simulation of a population and a sampling WITHOUT covariates</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="simWithout.html"><a href="simWithout.html#the-poisson-distribution"><i class="fa fa-check"></i><b>4.1</b> the Poisson distribution</a></li>
+<li class="chapter" data-level="4.2" data-path="simWithout.html"><a href="simWithout.html#distribute-a-simulated-deer-population"><i class="fa fa-check"></i><b>4.2</b> distribute a simulated deer population</a></li>
+<li class="chapter" data-level="4.3" data-path="simWithout.html"><a href="simWithout.html#sampling-simulation"><i class="fa fa-check"></i><b>4.3</b> Sampling Simulation</a></li>
+<li class="chapter" data-level="4.4" data-path="simWithout.html"><a href="simWithout.html#sampled-cells"><i class="fa fa-check"></i><b>4.4</b> Sampled Cells</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="unmarked.html"><a href="unmarked.html"><i class="fa fa-check"></i><b>5</b> The simplest N-mixture model with unmarked</a></li>
+<li class="chapter" data-level="6" data-path="simulation-of-the-study-area-and-sampling-with-covariates.html"><a href="simulation-of-the-study-area-and-sampling-with-covariates.html"><i class="fa fa-check"></i><b>6</b> Simulation of the study area and sampling WITH covariates</a></li>
+<li class="chapter" data-level="7" data-path="ref.html"><a href="ref.html"><i class="fa fa-check"></i><b>7</b> references</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">mashup: N-mixture models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="unmarked" class="section level1" number="5">
+<h1><span class="header-section-number"> 5</span> The simplest N-mixture model with unmarked</h1>
+<div style="display: flex;">
+<div class="col" style="font-style: italic; background-color: #d9d9d9; border-style:solid; width:45%">
+<p>Como ya hemos dicho, los N-mixture models nos permiten estimar a la vez la probabilidad de detección y la abundancia de nuestra especie a partir de muestreos repetidos. Para ajustar este tipo de modelos utilizaremos la función pcount del paquete unmarked. En primer lugar, debemos preparar los datos para que unmarked pueda leerlos. Utilizaremos la función unmarkedFramePCount para indicar cuales son los 15 muestreos repetidos en 4 ocasiones</p>
+</div>
+<div class="col">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col" style="width:45%">
+<p>As we have already said, the N-mixture models allow us to estimate both the probability of detection and the abundance of our species from repeated samplings. To adjust these types of models we will use the pcount function of the unmarked package. First of all, we need to prepare the data so that unmarked can read it. We will use the unmarkedFramePCount function to indicate which are the 15 samples repeated 4 times</p>
+</div>
+</div>
+<p><br /></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="unmarked.html#cb21-1" aria-hidden="true" tabindex="-1"></a>dataUM.s4 <span class="ot">&lt;-</span> unmarked<span class="sc">::</span><span class="fu">unmarkedFramePCount</span>(<span class="at">y =</span> dataset[,<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>])</span></code></pre></div>
+<p><br /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="unmarked.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Echamos un vistazo al objeto dataUM</span></span>
+<span id="cb22-2"><a href="unmarked.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dataUM.s4)</span></code></pre></div>
+<p><br /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="unmarked.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># hack the s4 object to get the data</span></span>
+<span id="cb23-2"><a href="unmarked.html#cb23-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(dataUM.s4<span class="sc">@</span>y))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">O1</th>
+<th align="right">O2</th>
+<th align="right">O3</th>
+<th align="right">O4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+<p><br /></p>
+<div style="display: flex;">
+<div class="col" style="font-style: italic; background-color: #d9d9d9; border-style:solid; width:45%">
+<p>Ahora podremos ajustar nuestro modelo con la función pcount. Vamos a ajustar el modelo más sencillo posible. En este ejemplo, ni la abundancia ni la propabilidad de detección vienen determinados por ninguna covariable, simplemente responden a un proceso de Poisson con λ=4 y a una distribución binomial con p=0.4 respectivamente. Lo que intentaremos averiguar con este modelo será esos dos parámetros.</p>
+</div>
+<div class="col">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col" style="width:45%">
+<p>Now we can fit our model with the pcount function. We are going to adjust the simplest possible model. In this example, neither the abundance nor the probability of detection are determined by any covariate, they simply respond to a Poisson process with λ = 4 and a binomial distribution with p = 0.4 respectively. What we will try to find out with this model will be those two parameters.</p>
+</div>
+</div>
+<p><br /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="unmarked.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Como en este modelo no hay variables predictoras, las fórmulas de detectabilidad</span></span>
+<span id="cb24-2"><a href="unmarked.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># y de abundancia las dejamos como ~1 respectivamente.</span></span>
+<span id="cb24-3"><a href="unmarked.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb24-4"><a href="unmarked.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (As there are no predictor variables in this model, we leave the detectability </span></span>
+<span id="cb24-5"><a href="unmarked.html#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#  and abundance formulas as ~ 1 respectively.)</span></span>
+<span id="cb24-6"><a href="unmarked.html#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb24-7"><a href="unmarked.html#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># La sintaxis de pcount sería:</span></span>
+<span id="cb24-8"><a href="unmarked.html#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># pcount(fórmula_detectabilidad fórmula_abundancia, datos, número_suficientemente_alto)</span></span>
+<span id="cb24-9"><a href="unmarked.html#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Para más información consultar help(pcount)</span></span>
+<span id="cb24-10"><a href="unmarked.html#cb24-10" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> unmarked<span class="sc">::</span><span class="fu">pcount</span>(<span class="sc">~</span><span class="dv">1</span> <span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>dataUM.s4, <span class="at">K=</span><span class="dv">50</span>)</span>
+<span id="cb24-11"><a href="unmarked.html#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## unmarked::pcount(formula = ~1 ~ 1, data = dataUM.s4, K = 50)
+## 
+## Abundance (log-scale):
+##  Estimate    SE    z  P(&gt;|z|)
+##      1.54 0.373 4.12 3.75e-05
+## 
+## Detection (logit-scale):
+##  Estimate    SE     z P(&gt;|z|)
+##    -0.596 0.561 -1.06   0.288
+## 
+## AIC: 185.7303 
+## Number of sites: 15
+## optim convergence code: 0
+## optim iterations: 22 
+## Bootstrap iterations: 0</code></pre>
+<p><br /></p>
+<div style="display: flex;">
+<div class="col" style="font-style: italic; background-color: #d9d9d9; border-style:solid; width:45%">
+<p>La función nos devuelve las estimaciones de los parámetros λ y p transformados en log y logit respectivamente. Es decir, el modelo realmente ajusta el parámetro log(λ) y logit(p), por lo que a estas estimas hay que hacerles la transformación inversa:</p>
+</div>
+<div class="col">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col" style="width:45%">
+<p>The function returns the estimates of the parameters λ and p transformed into log and logit respectively. That is, the model really adjusts the parameters log (λ) and logit (p), so these estimates have to be carried out the inverse transformation:</p>
+</div>
+</div>
+<p><br /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="unmarked.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lambda estimada:</span></span>
+<span id="cb26-2"><a href="unmarked.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(m1)[<span class="dv">1</span>]) <span class="co"># log</span></span></code></pre></div>
+<pre><code>## lam(Int) 
+## 4.643975</code></pre>
+<p><br /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="unmarked.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p estimada:</span></span>
+<span id="cb28-2"><a href="unmarked.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#exp(coef(m1)[2])/(1+exp(coef(m1)[2])) # log ratio o log odds = logit</span></span>
+<span id="cb28-3"><a href="unmarked.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plogis</span>(<span class="fu">coef</span>(m1)[<span class="dv">2</span>]) <span class="co"># log ratio o log odds = logit; igual que arriba</span></span></code></pre></div>
+<pre><code>##    p(Int) 
+## 0.3552852</code></pre>
+<p><br /></p>
+<div style="display: flex;">
+<div class="col" style="font-style: italic; background-color: #d9d9d9; border-style:solid; width:45%">
+<p>Como vemos, la estima de λ es de 4.64 frente a la real, que era de 4. Por otro lado, la estima de p es de 0.35, mientras que la p real o detectabilidad era de 0.4. No es un modelo perfecto, pero se ajusta bastante a la realidad. ¿Cómo podríamos mejorar estas estimas? Incrementando el número de sitios muestreados, aumentando el número de visitas en cada sitio, etc. En cualquier caso, podemos calcular las abundancias predichas por nuestro modelo para cada sitio visitado y ver cómo se ajusta con respecto a la abundancia real. Para ello, usaremos la función bup:</p>
+</div>
+<div class="col">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col" style="width:45%">
+<p>As we can see, the estimate of λ is 4.64 compared to the real one, which was 4. On the other hand, the estimate of p is 0.35, while the real p or detectability was 0.4. It is not a perfect model, but it is quite realistic. How could we improve these estimates? Increasing the number of sampled sites, increasing the number of visits to each site, etc. In either case, we can calculate the abundances predicted by our model for each site visited and see how it adjusts with respect to the actual abundance. To do this, we will use the bup function:</p>
+</div>
+</div>
+<p><br /></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="unmarked.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bup() stores the estimated posterior distributions of the latent abundance </span></span>
+<span id="cb30-2"><a href="unmarked.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or occurrence variables.</span></span>
+<span id="cb30-3"><a href="unmarked.html#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="unmarked.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculamos las predicciones de abundancias</span></span>
+<span id="cb30-5"><a href="unmarked.html#cb30-5" aria-hidden="true" tabindex="-1"></a>N_m1.vector <span class="ot">&lt;-</span> unmarked<span class="sc">::</span><span class="fu">bup</span>(unmarked<span class="sc">::</span><span class="fu">ranef</span>(m1)) </span></code></pre></div>
+<p><br /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="unmarked.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># graficamos la relación entre las abundancias reales y las predichas</span></span>
+<span id="cb31-2"><a href="unmarked.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dataset<span class="sc">$</span>trueN, N_m1.vector, <span class="at">xlab=</span><span class="st">&quot;Abundancia simulada&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;Abundancia predicha&quot;</span>)</span>
+<span id="cb31-3"><a href="unmarked.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="co"># a 1:1 line</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="unmarked.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb32-2"><a href="unmarked.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(dataset<span class="sc">$</span>trueN, N_m1.vector), </span>
+<span id="cb32-3"><a href="unmarked.html#cb32-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">stroke =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="unmarked.html#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>() <span class="sc">+</span> </span>
+<span id="cb32-5"><a href="unmarked.html#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">2</span>,<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="unmarked.html#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">2</span>,<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb32-7"><a href="unmarked.html#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()  <span class="sc">+</span></span>
+<span id="cb32-8"><a href="unmarked.html#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">x =</span> <span class="st">&quot;simulated abundance&quot;</span>,</span>
+<span id="cb32-9"><a href="unmarked.html#cb32-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> <span class="st">&quot;predicted abundance&quot;</span>)</span></code></pre></div>
+<p><br /></p>
+<div style="display: flex;">
+<div class="col" style="width:45%">
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+</div>
+<div class="col">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col" style="width:45%">
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+</div>
+</div>
+<p><br /></p>
+<div style="display: flex;">
+<div class="col" style="font-style: italic; background-color: #d9d9d9; border-style:solid; width:45%">
+<p>Vemos ahora que hemos solventado el problema de la infraestima. Este sencillo ejemplo nos sirve para explicar de forma clara el funcionamiento del modelo N-mixture. Sin embargo, la abundancia normalmente suele venir determinada por alguna covariable predictora que afecta a la distribución de las especies, como disponibilidad de recursos, refugio, etc. Por eso, a continuación simularemos otro set de datos y ajustatemos un modelo un poco más complejo.</p>
+</div>
+<div class="col">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div>
+<div class="col" style="width:45%">
+<p>We now see that we have solved the problem of underestimation. This simple example helps us to clearly explain how the N-mixture model works. However, the abundance is usually determined by some predictive covariate that affects the distribution of the species, such as availability of resources, refuge, etc. Therefore, next we will simulate another set of data and fit a slightly more complex model.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="simWithout.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simulation-of-the-study-area-and-sampling-with-covariates.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-simulation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

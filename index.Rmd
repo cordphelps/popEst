@@ -16,6 +16,7 @@ documentclass: book #    chapters vs. sections: 'book' or 'article' per
 # https://stackoverflow.com/questions/63530527/multipage-bookdown-into-article
 # bookdown::render_book("index.Rmd")
 # rmarkdown::render("index.Rmd") produces tutorial.html
+# bookdown::render_book('index.Rmd', 'bookdown::pdf_book')   <-- build the pdf
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
